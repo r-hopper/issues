@@ -1,0 +1,34 @@
+---
+title: "Issue_72_Example_With_Sankey"
+output:
+  html_document:
+    self_contained: no
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+Body text example
+
+```{r load}
+library(googleVis)
+options(gvis.plot.tag='chart')
+
+dat <- data.frame(From=c(rep("A",3), rep("B", 3)), 
+                  To=c(rep(c("X", "Y", "Z"),2)), 
+                  Weight=c(5,7,6,2,9,4))
+
+plot(dat$From, dat$Weight)
+
+```
+
+More body text
+
+```{r pressure, echo=FALSE, results='asis'}
+sk1 <- gvisSankey(dat, from="From", to="To", weight="Weight")
+print(sk1)
+```
+
